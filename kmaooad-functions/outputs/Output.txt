@@ -1,0 +1,9 @@
+POST / HTTP/1.1
+Host: bots.requestcatcher.com
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Content-Length: 332
+Content-Type: application/json
+
+{"update_id":983721550,
+"message":{"message_id":6,"from":{"id":421325006,"is_bot":false,"first_name":"Alexandra","last_name":"Shliakhova","username":"Sun_0k","language_code":"ru"},"chat":{"id":421325006,"first_name":"Alexandra","last_name":"Shliakhova","username":"Sun_0k","type":"private"},"date":1664723185,"text":"hello, world"}}
