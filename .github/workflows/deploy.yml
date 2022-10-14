@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_NAME: kmaooad-bot-farm # set this to your function app name on Azure
+  AZURE_FUNCTIONAPP_NAME: kmaooad-bots # set this to your function app name on Azure
   PACKAGE_DIRECTORY: "./kmaooad-functions" # set this to the directory which contains pom.xml file
   JAVA_VERSION: "11" # set this to the java version to use
 
