@@ -10,6 +10,14 @@ import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
 import org.json.JSONObject;
 
+import static com.mongodb.client.model.Filters.eq;
+
+import org.bson.Document;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
 import java.util.Optional;
 
 /**
@@ -72,4 +80,35 @@ public class Function {
             return request.createResponseBuilder(HttpStatus.BAD_REQUEST).body(FailResponse).build();
         }
     }
+
+    @FunctionName("TelegramWebhookMessageID")
+    public HttpResponseMessage SaveToDBTest(
+            @HttpTrigger(
+                name = "req",
+                methods = {HttpMethod.POST},
+                authLevel = AuthorizationLevel.FUNCTION)
+                HttpRequestMessage<Optional<String>> request,
+            final ExecutionContext context)
+    {
+        context.getLogger().info("Java HTTP trigger processed a request.");
+
+        try {
+            final String RequestBody = request.getBody().orElse(null);
+            if (RequestBody != null) {
+                JSONObject JSONBody = new JSONObject(RequestBody);
+
+                String uri = "mongodb+srv://admin:admin@cluster0.tn0cl.mongodb.net/?retryWrites=true&w=majority";
+                try (MongoClient mongoClient = MongoClients.create(uri)) {
+                    MongoDatabase database = mongoClient.getDatabase("bots");
+                    MongoCollection<Document> collection = database.getCollection("updates");
+                    String InsertionResult = collection.insertOne(Document.parse(JSONBody.toString())).toString();
+                    return request.createResponseBuilder(HttpStatus.OK).body("Succesfully inserted: " + InsertionResult).build();
+                }
+            }
+        } finally {
+            return request.createResponseBuilder(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+
 }
