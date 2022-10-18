@@ -36,7 +36,7 @@ jobs:
         uses: Azure/functions-action@v1
         id: fa
         with:
-          app-name: "kmaooad-bot-farm"
+          app-name: "kmaooad-bots"
           slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1214F688DD8A4B6791E3E9D4CE7C9ECA }}
           package: "${{ env.PACKAGE_DIRECTORY }}"
