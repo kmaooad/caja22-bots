@@ -20,13 +20,11 @@ public class FunctionTest {
     /**
      * Unit test for HttpTriggerJava method.
      */
-    @Test
-    public void testHttpTriggerJava() throws Exception {
-        // Setup
-        @SuppressWarnings("unchecked")
+
+    private HttpResponseMessage getResponse(final Optional<String> queryBody)
+    {
         final HttpRequestMessage<Optional<String>> req = mock(HttpRequestMessage.class);
 
-        final Optional<String> queryBody = Optional.of("Azure");
         doReturn(queryBody).when(req).getBody();
 
         doAnswer(new Answer<HttpResponseMessage.Builder>() {
@@ -39,11 +37,36 @@ public class FunctionTest {
 
         final ExecutionContext context = mock(ExecutionContext.class);
         doReturn(Logger.getGlobal()).when(context).getLogger();
+        return new Function().run(req, context);
+    }
 
-        // Invoke
-        final HttpResponseMessage ret = new Function().run(req, context);
+    @Test
+    public void testHttpTriggerJava() throws Exception {
+
+        final String invalidJSONString = "Definitely not JSON object";
+        final HttpResponseMessage ret = getResponse(Optional.of(invalidJSONString));
 
         // Verify
+        assertEquals(ret.getStatus(), HttpStatus.BAD_REQUEST);
+    }
+    @Test
+    public void testSuccessfulTriggerJava() throws Exception {
+
+        final String successfulMessage = "{\"update_id\":983721550,\n" +
+                "\"message\":{\"message_id\":6,\"from\":{\"id\":421325006,\"is_bot\":false,\"first_name\":\"Alexandra\"" +
+                ",\"last_name\":\"Shliakhova\",\"username\":\"Sun_0k\",\"language_code\":\"ru\"}," +
+                "\"chat\":{\"id\":421325006,\"first_name\":\"Alexandra\",\"last_name\":\"Shliakhova\"," +
+                "\"username\":\"Sun_0k\",\"type\":\"private\"},\"date\":1664723185,\"text\":\"hello, world\"}}";
+
+        final HttpResponseMessage ret = getResponse(Optional.of(successfulMessage));
+        // Verify
         assertEquals(ret.getStatus(), HttpStatus.OK);
+    }
+    @Test
+    public void testEmptyBodyTriggerJava() throws Exception {
+
+        final HttpResponseMessage ret = getResponse(Optional.empty());
+        // Verify
+        assertEquals(ret.getStatus(), HttpStatus.BAD_REQUEST);
     }
 }
