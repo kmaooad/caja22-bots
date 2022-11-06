@@ -11,14 +11,14 @@ on:
 
 env:
   AZURE_FUNCTIONAPP_NAME: kmaooad-bots # set this to your function app name on Azure
-  PACKAGE_DIRECTORY: "./kmaooad-functions" # set this to the directory which contains pom.xml file
-  JAVA_VERSION: "11" # set this to the java version to use
+  PACKAGE_DIRECTORY: './kmaooad-functions' # set this to the directory which contains pom.xml file
+  JAVA_VERSION: '11' # set this to the java version to use
 
 jobs:
   build-and-deploy:
     runs-on: windows-latest
     steps:
-      - name: "Checkout GitHub Action"
+      - name: 'Checkout GitHub Action'
         uses: actions/checkout@v2
 
       - name: Setup Java Sdk ${{ env.JAVA_VERSION }}
@@ -26,18 +26,18 @@ jobs:
         with:
           java-version: ${{ env.JAVA_VERSION }}
 
-      - name: "Restore Project Dependencies Using Mvn"
+      - name: 'Restore Project Dependencies Using Mvn'
         shell: pwsh
         run: |
           pushd './${{ env.PACKAGE_DIRECTORY }}'
           mvn clean package
           popd
-      - name: "Run Azure Functions Action"
+      - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
         id: fa
         with:
-          app-name: "kmaooad-bots"
-          slot-name: "Production"
+          app-name: 'kmaooad-bots'
+          slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1214F688DD8A4B6791E3E9D4CE7C9ECA }}
-          package: "${{ env.PACKAGE_DIRECTORY }}"
+          package: '${{ env.PACKAGE_DIRECTORY }}'
           respect-pom-xml: true
