@@ -12,6 +12,12 @@ import java.util.Optional;
  * Azure Functions with HTTP Trigger.
  */
 public class TelegramWebhookHandler extends FunctionInvoker<BotUpdate, BotUpdateResult> {
+
+    /**
+     * This function listens at endpoint "/api/TelegramWebhook". To invoke it using "curl" command in bash:
+     * curl -d "HTTP Body" http://localhost:8080/api/TelegramWebhook
+     */
+
     @FunctionName("TelegramWebhook")
     public HttpResponseMessage run(
             @HttpTrigger(
