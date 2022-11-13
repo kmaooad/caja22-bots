@@ -37,7 +37,7 @@ public class FunctionTest {
 
         final ExecutionContext context = mock(ExecutionContext.class);
         doReturn(Logger.getGlobal()).when(context).getLogger();
-        return new Function().run(req, context);
+        return new TelegramWebhookHandler().run(req, context);
     }
 
     @Test
