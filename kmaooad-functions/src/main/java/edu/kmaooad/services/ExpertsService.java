@@ -7,8 +7,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ExpertsService {
-
     private ExpertsRepository expertsRepository;
+
+    @Autowired
+    public ExpertsService(ExpertsRepository expertsRepository) {
+        this.expertsRepository = expertsRepository;
+    }
 
     public Expert createExpert(Expert expert){
         return expertsRepository.save(expert);

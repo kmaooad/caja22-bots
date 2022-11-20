@@ -1,5 +1,6 @@
 package edu.kmaooad;
 
+import edu.kmaooad.update.BotUpdate;
 import org.junit.jupiter.api.Test;
 
 
