@@ -38,6 +38,6 @@ jobs:
         with:
           app-name: 'kmaooad-bots'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1214F688DD8A4B6791E3E9D4CE7C9ECA }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_888607070321451CADF6F6C77B55F58C }}
           package: '${{ env.PACKAGE_DIRECTORY }}'
           respect-pom-xml: true
