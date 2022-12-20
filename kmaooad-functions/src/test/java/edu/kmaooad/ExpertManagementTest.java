@@ -1,7 +1,7 @@
 package edu.kmaooad;
 
-import edu.kmaooad.update.BotUpdate;
 import org.junit.jupiter.api.Test;
+import org.telegram.telegrambots.meta.api.objects.Update;
 
 
 public class ExpertManagementTest {
@@ -16,9 +16,7 @@ public class ExpertManagementTest {
     @Test
     public void createBotUpdate(){
 
-        BotUpdate update = new BotUpdate(botUpdateQuery);
-        assert(update.getText().equals("addExpert"));
-        assert(update.getMessageId().equals("6"));
+        Update update = new Update();
     }
 
 }
