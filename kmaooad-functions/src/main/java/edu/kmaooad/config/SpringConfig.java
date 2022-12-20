@@ -1,4 +1,5 @@
 package edu.kmaooad.config;
+
 import edu.kmaooad.TelegramBot;
 import edu.kmaooad.TelegramConfig;
 import edu.kmaooad.handlers.MessageHandler;
