@@ -37,7 +37,7 @@ public class SessionServiceImpl implements SessionService {
         Optional<Session> session = sessionRepository.findById(userId);
 
         if (session.isEmpty()) {
-            throw new Exception();
+            session = Optional.of(createSessionById(userId));
         }
 
         session.get().currentState = state.key();
@@ -49,7 +49,7 @@ public class SessionServiceImpl implements SessionService {
         Optional<Session> session = sessionRepository.findById(userId);
 
         if (session.isEmpty()) {
-            throw new Exception();
+            session = Optional.of(createSessionById(userId));
         }
 
         session.get().statesCache.put(group.group(), cache);
