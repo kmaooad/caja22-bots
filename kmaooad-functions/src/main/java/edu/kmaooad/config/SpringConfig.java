@@ -1,12 +1,11 @@
 package edu.kmaooad.config;
 
-import edu.kmaooad.TelegramBot;
-import edu.kmaooad.TelegramConfig;
-import edu.kmaooad.handlers.MessageHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
+import org.springframework.context.MessageSource;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 @Configuration
 public class SpringConfig {
@@ -23,13 +22,12 @@ public class SpringConfig {
     }
 
     @Bean
-    public TelegramBot springWebhookBot(SetWebhook setWebhook, MessageHandler messageHandler) {
-        TelegramBot bot = new TelegramBot(setWebhook, messageHandler);
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource
+                = new ReloadableResourceBundleMessageSource();
 
-        bot.setBotPath(telegramConfig.getWebhookPath());
-        bot.setBotUsername(telegramConfig.getBotName());
-        bot.setBotToken(telegramConfig.getBotToken());
-
-        return bot;
+        messageSource.setBasename("classpath:messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
     }
 }

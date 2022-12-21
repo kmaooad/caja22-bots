@@ -29,9 +29,7 @@ public class TelegramWebhookHandler extends FunctionInvoker<Update, BotApiMethod
             HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
 
-        //parse request
-        //create BotUpdate
-        //invoke TelegramWebHook apply with Update
+
         return null;
     }
 }

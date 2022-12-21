@@ -1,4 +1,4 @@
-package edu.kmaooad;
+package edu.kmaooad.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

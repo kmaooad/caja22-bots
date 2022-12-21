@@ -3,6 +3,9 @@ package edu.kmaooad.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+/*
+* Entity that represents expert
+*/
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
