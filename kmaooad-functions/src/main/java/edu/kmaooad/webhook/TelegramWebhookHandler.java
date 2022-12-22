@@ -29,10 +29,7 @@ public class TelegramWebhookHandler extends FunctionInvoker<Update, BotApiMethod
                     authLevel = AuthorizationLevel.FUNCTION)
             HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
-        System.out.println(request.toString());
-
         Update update;
-
         try {
             final String body = request.getBody().get();
 
