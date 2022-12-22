@@ -1,5 +1,6 @@
 package edu.kmaooad.webhook;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
@@ -28,8 +29,19 @@ public class TelegramWebhookHandler extends FunctionInvoker<Update, BotApiMethod
                     authLevel = AuthorizationLevel.FUNCTION)
             HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
+        Update update;
+        try {
+            final String body = request.getBody().get();
 
+            final ObjectMapper mapper = new ObjectMapper();
+            update = mapper.readValue(body, Update.class);
+            handleRequest(update, context);
+        } catch (Exception exception) {
+            System.err.println(exception.getMessage());
+        }
 
-        return null;
+        return request
+                .createResponseBuilder(HttpStatus.OK)
+                .build();
     }
 }
