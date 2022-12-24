@@ -13,10 +13,10 @@ public class ExpertManagementTest {
             "ast_name\":\"Smith\",\"username\":\"Sun_0k\",\"type\":\"private\"},\"date\":1664723185,\"" +
             "text\":\"addExpert\"}}";
 
-    @Test
-    public void createBotUpdate(){
-
-        Update update = new Update();
-    }
+//    @Test
+//    public void createBotUpdate(){
+//
+//        Update update = new Update();
+//    }
 
 }
