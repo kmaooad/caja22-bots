@@ -2,7 +2,7 @@ package edu.kmaooad.services;
 
 import edu.kmaooad.models.Session;
 import edu.kmaooad.repository.SessionRepository;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;

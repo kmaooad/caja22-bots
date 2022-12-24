@@ -1,6 +1,6 @@
 package edu.kmaooad.services;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.any;
 import edu.kmaooad.telegram.TelegramApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
