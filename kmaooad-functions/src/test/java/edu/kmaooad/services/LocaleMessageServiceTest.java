@@ -1,6 +1,6 @@
 package edu.kmaooad.services;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.MessageSource;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;

@@ -2,7 +2,7 @@ package edu.kmaooad.services;
 
 import edu.kmaooad.models.Expert;
 import edu.kmaooad.repository.ExpertsRepository;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
